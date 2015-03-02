@@ -72,3 +72,8 @@ system.time(test5 <- sim_ddpcr_bkm_orig(0.5, n_exp = 8, seed = 5, pos_sums = TRU
                                    sddropc = 500, mudropr = 0.7, sddropr = 0.1, Pvar = TRUE,
                                    piperr = 0.02, dropsd = 0.2, falpos = 0.001, falneg = 0.01))
 str(test5)
+
+set.seed(5)
+system.time(test5_2 <- sim_ddpcr_bkm_orig(0.5, n_exp = 8, type = "np",
+                                        sddropc = 500, mudropr = 0.7, sddropr = 0.1, Pvar = TRUE,
+                                        piperr = 0.02, dropsd = 0.2, falpos = 0.001, falneg = 0.01))
