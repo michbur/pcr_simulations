@@ -64,6 +64,11 @@ set.seed(4)
 system.time(test4_2 <- sim_ddpcr_bkm(0.5, n_exp=1, type = "np", fluo_range = 10, sddropc = 500,
                                      mudropr = 0.7, sddropr = 0.1, Pvar = TRUE, piperr = 0.02,
                                      dropsd = 0.2, rain = 0.1))
-#should be around 300 times faster
 test4_2_res <- as.vector(-log(1-sum(test4_2)/test4_2@n))
 #difference between sum(test4[[1]]) (4932) and sum(test4_2) (5042)
+
+# test 5 -------------------------------------
+system.time(test5 <- sim_ddpcr_bkm_orig(0.5, n_exp = 8, seed = 5, pos_sums = TRUE, fluo = TRUE,
+                                   sddropc = 500, mudropr = 0.7, sddropr = 0.1, Pvar = TRUE,
+                                   piperr = 0.02, dropsd = 0.2, falpos = 0.001, falneg = 0.01))
+str(test5)
