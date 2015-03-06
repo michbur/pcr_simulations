@@ -74,6 +74,27 @@ system.time(test5 <- sim_ddpcr_bkm_orig(0.5, n_exp = 8, seed = 5, pos_sums = TRU
 str(test5)
 
 set.seed(5)
-system.time(test5_2 <- sim_ddpcr_bkm_orig(0.5, n_exp = 8, type = "np",
+system.time(test5_2 <- sim_ddpcr_bkm(0.5, n_exp = 8, type = "np",
                                         sddropc = 500, mudropr = 0.7, sddropr = 0.1, Pvar = TRUE,
                                         piperr = 0.02, dropsd = 0.2, falpos = 0.001, falneg = 0.01))
+
+# test 6 -------------------------------------
+system.time(test6 <- sim_ddpcr_bkm_orig(exp(-4:1), n_exp = 8, seed = 6, pos_sums = TRUE, fluo = TRUE,
+                                   sddropc = 500, mudropr = 0.7, sddropr = 0.1, Pvar = TRUE,
+                                   piperr = 0.02, dropsd = 0.2, falpos = 0.001, falneg = 0.01))
+conc <- NULL
+for(j in 1:6){
+  conct <- NULL
+  for(i in 1:8){
+    conct <- c(conct, -log(1-sum(test6[[16*(j-1)+2*i-1]])/length(test6[[16*(j-1)+2*i-1]])))
+  }
+  conc <- cbind(conc, conct)
+}
+colnames(conc) <- round(exp(-4:1), 3)
+conc
+
+
+set.seed(6)
+system.time(test6_2 <- sim_ddpcr_bkm(exp(-4:1), n_exp = 8, type = "np",
+                                          sddropc = 500, mudropr = 0.7, sddropr = 0.1, Pvar = TRUE,
+                                          piperr = 0.02, dropsd = 0.2, falpos = 0.001, falneg = 0.01))
