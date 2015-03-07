@@ -53,5 +53,7 @@ system.time(test6_2 <- sim_ddpcr_bkm(exp(-4:1), n_exp = 8, type = "np",
                                      sddropc = 500, mudropr = 0.7, sddropr = 0.1, Pvar = TRUE,
                                      piperr = 0.02, dropsd = 0.2, falpos = 0.001, falneg = 0.01))
 
+conc_2 <- summary(test6_2, print = FALSE)
 
+conc_2 <- matrix(-log(1-conc_2$partitions$k/conc_2$partitions$n), nrow = 8) 
 
